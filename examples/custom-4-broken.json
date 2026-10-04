@@ -1,0 +1,24 @@
+{
+  "wireCount": 4,
+  "stages": [
+    {
+      "comparators": [
+        { "a": 0, "b": 1, "dir": "asc" },
+        { "a": 2, "b": 3, "dir": "desc" }
+      ],
+      "explanation": "自定义导入：双调构造阶段"
+    },
+    {
+      "comparators": [
+        { "a": 0, "b": 2, "dir": "asc" },
+        { "a": 1, "b": 3, "dir": "asc" }
+      ]
+    },
+    {
+      "comparators": [
+        { "a": 0, "b": 1, "dir": "asc" }
+      ],
+      "explanation": "故意删掉 (2,3,asc)，核验应给出零一反例"
+    }
+  ]
+}

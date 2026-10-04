@@ -1,0 +1,39 @@
+export const ErrorCode = {
+  INVALID_PARAM: 'INVALID_PARAM',
+  UNSUPPORTED_SIZE: 'UNSUPPORTED_SIZE',
+  WIRE_OUT_OF_RANGE: 'WIRE_OUT_OF_RANGE',
+  SAME_WIRE_COMPARATOR: 'SAME_WIRE_COMPARATOR',
+  ILLEGAL_DIRECTION: 'ILLEGAL_DIRECTION',
+  DUPLICATE_WIRE_IN_STAGE: 'DUPLICATE_WIRE_IN_STAGE',
+  TOO_MANY_STAGES: 'TOO_MANY_STAGES',
+  TOO_MANY_COMPARATORS: 'TOO_MANY_COMPARATORS',
+  EXPLANATION_TOO_LARGE: 'EXPLANATION_TOO_LARGE',
+  INPUT_LENGTH_MISMATCH: 'INPUT_LENGTH_MISMATCH',
+  INPUT_NOT_FINITE_NUMBER: 'INPUT_NOT_FINITE_NUMBER',
+  NETWORK_NOT_FOUND: 'NETWORK_NOT_FOUND',
+  VERSION_NOT_FOUND: 'VERSION_NOT_FOUND',
+  RUN_NOT_FOUND: 'RUN_NOT_FOUND',
+  NOTHING_TO_RESUME: 'NOTHING_TO_RESUME',
+  SORT_COUNTEREXAMPLE: 'SORT_COUNTEREXAMPLE'
+} as const;
+
+export type ErrorCodeType = (typeof ErrorCode)[keyof typeof ErrorCode];
+
+export class AppError extends Error {
+  readonly code: ErrorCodeType;
+  readonly details?: unknown;
+  constructor(code: ErrorCodeType, message: string, details?: unknown) {
+    super(message);
+    this.name = 'AppError';
+    this.code = code;
+    this.details = details;
+  }
+}
+
+export const LIMITS = {
+  MAX_STAGES: 256,
+  MAX_COMPARATORS_PER_STAGE: 1024,
+  MAX_TOTAL_COMPARATORS: 65536,
+  MAX_EXPLANATION_CHARS: 20000,
+  MAX_NAME_CHARS: 200
+} as const;
